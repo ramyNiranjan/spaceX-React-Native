@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {FunctionComponent} from 'react';
-import {FlatList} from 'react-native';
+import {ActivityIndicator, FlatList} from 'react-native';
 import {gql, useQuery} from '@apollo/client';
 import * as S from './styled';
 import LaunchCard from '../../components/LaunchCard';
@@ -24,9 +24,13 @@ const LAUNCH_UPCOMING_QUERY = gql`
 `;
 
 const LauchUpcoming: FunctionComponent<Props> = () => {
-  const {data} = useQuery(LAUNCH_UPCOMING_QUERY, {
+  const {data, loading} = useQuery(LAUNCH_UPCOMING_QUERY, {
     variables: {order: 'desc', sort: 'launch_date_unix'},
+    fetchPolicy: 'cache-and-network',
   });
+  if (loading) {
+    <ActivityIndicator size="large" color="#00ff00" />;
+  }
   return (
     <>
       <FlatList
