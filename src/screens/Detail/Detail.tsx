@@ -1,3 +1,4 @@
+/* eslint-disable eslint-comments/no-unused-disable */
 /* eslint-disable no-shadow */
 /* eslint-disable space-infix-ops */
 /* eslint-disable keyword-spacing */
@@ -16,7 +17,7 @@ type OwnProps = {
 type Props = OwnProps;
 
 const Get_SINGEL_LAUNCH = gql`
-  query Launch($id: Interger!) {
+  query Launch($id: String!) {
     launch(id: $id) {
       details
       mission_name
